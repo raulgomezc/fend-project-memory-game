@@ -33,6 +33,11 @@ h1 {
     font-weight: 300;
 }
 
+.stars li {
+    list-style: none;
+    display: inline-block;
+}
+
 /*
  * Styles for the deck of cards
  */
@@ -85,6 +90,11 @@ h1 {
  * Styles for the Score Panel
  */
 
+ .score-panel .timer-wraper {
+    display: inline-block;
+    margin: 0 10px 0 0;
+ }
+
 .score-panel {
     text-align: left;
     width: 345px;
@@ -98,12 +108,40 @@ h1 {
     margin: 0 5px 0 0;
 }
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
-
 .score-panel .restart {
     float: right;
+    cursor: pointer;
+}
+
+/*
+ * Styles for the Winning modal
+ */
+
+.winning-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fefefe;
+}
+
+.winning-modal-content {
+    margin: 100px;
+    text-align: center;
+}
+
+.end-stars {
+    padding: 0;
+}
+
+.start-new {
+    font-weight: bold;
+}
+
+.start-new:hover,
+.start-new:focus {
     cursor: pointer;
 }
