@@ -1,12 +1,7 @@
-
-/*
- * TODO: Migrate all the code to use ES6
- */
-
 /*
  * Create a list that holds all of your cards
  */
-var cards = [
+const cards = [
     'fa-diamond',
     'fa-paper-plane-o',
     'fa-anchor',
@@ -28,19 +23,19 @@ var cards = [
 /*
  * Constants that are going to be used in all the script
  */
-var deck = $('.deck');
-var movesDisplayer = $('.moves');
-var stars = $('.stars');
-var timer = $('.timer');
-var winningModal = $('.winning-modal');
-var endStars = $('.end-stars');
-var endMoves = $('.end-moves');
-var endMinutes = $('.end-minutes');
-var endSeconds = $('.end-seconds');
+const deck = $('.deck');
+const movesDisplayer = $('.moves');
+const stars = $('.stars');
+const timer = $('.timer');
+const winningModal = $('.winning-modal');
+const endStars = $('.end-stars');
+const endMoves = $('.end-moves');
+const endMinutes = $('.end-minutes');
+const endSeconds = $('.end-seconds');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -68,9 +63,9 @@ function startTimer() {
  * Will rate the player based on the number of moves he's made
  */
 function ratePlayer() {
-    var starsChilds = stars.children('li');
-    var starsClasses = 'fa-star fa-star-o';
-    var rateNumber = moves === 16 ? 2 : moves === 20 ? 1 : moves === 24 ? 0 : null;
+    let starsChilds = stars.children('li');
+    let starsClasses = 'fa-star fa-star-o';
+    let rateNumber = moves === 16 ? 2 : moves === 20 ? 1 : moves === 24 ? 0 : null;
     $(starsChilds[rateNumber]).children('i').toggleClass(starsClasses);
 }
 
@@ -100,8 +95,8 @@ function endGame() {
  * Takes care of almost all the game functionality invoked when a card is clicked
  */
 async function selectCard(event) {
-    var card = $(this);
-    var invalidCard = card.attr('class') === 'card open show' || card.attr('class') === 'card match';
+    let card = $(this);
+    let invalidCard = card.attr('class') === 'card open show' || card.attr('class') === 'card match';
     // Will return if the card clicked is already opened or the game is already matching another pair of cards
     if (invalidCard || matching) {
         return;
@@ -115,7 +110,7 @@ async function selectCard(event) {
     // Will do the matching if there's already a card flipped
     if (cardFlipped) {
         matching = true;
-        var openedCards = $('.open');
+        let openedCards = $('.open');
         if (cardFlipped == card.children('i').attr('class')) {
             openedCards.toggleClass('open show match');
             cardFlipped = null;
@@ -154,12 +149,12 @@ function newGame() {
     stars.html('<li><i class="fa fa-star"></i></li>'.repeat(3));
     deck.html('');
     movesDisplayer.html(moves);
-    var cardModel = $('<li class="card"><i class="fa"></i></li>');
-    var shuffledCards = shuffle(cards);
+    let cardModel = $('<li class="card"><i class="fa"></i></li>');
+    let shuffledCards = shuffle(cards);
     // This will loop through the already shuffled cards and place them on the deck
-    for (var i = 0; i < shuffledCards.length; i++) {
-        var card = cardModel.clone();
-        card.children('i').addClass(shuffledCards[i]);
+    for (let cardClass of shuffledCards) {
+        let card = cardModel.clone();
+        card.children('i').addClass(cardClass);
         deck.append(card);
     }
     $('li.card').click(selectCard);
