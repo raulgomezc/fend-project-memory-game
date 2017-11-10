@@ -65,7 +65,7 @@ function startTimer() {
 function ratePlayer() {
     let starsChilds = stars.children('li');
     let starsClasses = 'fa-star fa-star-o';
-    let rateNumber = moves === 16 ? 2 : moves === 20 ? 1 : moves === 24 ? 0 : null;
+    let rateNumber = moves === 16 ? 2 : moves === 20 ? 1 : null;
     $(starsChilds[rateNumber]).children('i').toggleClass(starsClasses);
 }
 
@@ -124,7 +124,7 @@ async function selectCard(event) {
         }
         moves += 1;
         movesDisplayer.html(moves);
-        if (moves === 16 || moves === 20 || moves === 24){
+        if (moves === 16 || moves === 20){
             ratePlayer();
         }
         matching = false;
